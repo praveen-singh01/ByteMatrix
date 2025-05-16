@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const profileData = [
   {
@@ -40,6 +41,11 @@ const profileData = [
 ];
 
 const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index: number }) => {
+  // Get the basePath for images
+  const pathname = usePathname();
+  const isProduction = pathname.includes('/ByteMatrix');
+  const basePath = isProduction ? '/ByteMatrix' : '';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -76,7 +82,7 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
             className="h-full w-full"
           >
             <Image
-              src={profile.image}
+              src={`${basePath}${profile.image}`}
               alt={`${profile.name} - ${profile.role} at ByteMatrix Software Solution - Expert in ${profile.skills.slice(0, 3).join(', ')}`}
               fill
               className="object-cover object-top transition-transform duration-500 hover:scale-110"
