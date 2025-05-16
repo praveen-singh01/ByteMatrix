@@ -129,8 +129,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 By <span itemProp="author">{post.author}</span>
               </p>
               <p className="text-gray-500 dark:text-gray-400 text-sm">
-                <time itemProp="datePublished" dateTime={post.publishedAt}>
-                  {formatDate(post.publishedAt)}
+                <time itemProp="datePublished" dateTime={post.publishedAt || ''}>
+                  {post.publishedAt ? formatDate(post.publishedAt) : 'Date not available'}
                 </time>
                 {` · ${readingTime}`}
               </p>
