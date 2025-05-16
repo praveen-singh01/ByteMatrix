@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import StructuredData from "@/components/StructuredData";
 import MobileNav from "@/components/MobileNav";
+import ImageDebug from "@/components/ImageDebug";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -75,6 +76,7 @@ export default function RootLayout({
           <ThemeToggle />
           <MobileNav />
           {children}
+          <ImageDebug />
         </ThemeProvider>
         <StructuredData />
       </body>

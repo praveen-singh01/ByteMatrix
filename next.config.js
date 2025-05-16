@@ -21,6 +21,8 @@ const nextConfig = {
       },
     ],
   },
+  // Ensure trailing slashes are handled correctly
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
