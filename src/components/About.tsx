@@ -2,14 +2,17 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+
+// Helper function to determine if we're in production (GitHub Pages)
+const isProduction = typeof window !== 'undefined' && window.location.hostname.includes('github.io');
+const basePath = isProduction ? '/ByteMatrix' : '';
 
 const profileData = [
   {
     name: "Praveen Singh",
     role: "Full Stack Developer",
     bio: "Experienced developer with a focus on scalable applications and clean code. Expert in Flutter, Firebase, cloud technologies, and DevOps practices.",
-    image: "/praveen.jpeg",
+    image: `${basePath}/praveen.jpeg`,
     skills: ["Flutter", "Firebase", "Dart", "AWS", "Git", "Node.js", "MongoDB", "Docker"],
     social: {
       github: "https://github.com/praveen",
@@ -20,7 +23,7 @@ const profileData = [
     name: "Pragya Aditya",
     role: "FrontEnd Developer",
     bio: "Passionate about creating beautiful and functional web applications. Specializes in React, Node.js, and modern web technologies with expertise in UI/UX design.",
-    image: "/pragya.png",
+    image: `${basePath}/pragya.png`,
     skills: ["React", "Node.js", "TypeScript", "UI/UX", "Vue.js", "Python", "AWS", "Figma"],
     social: {
       github: "https://www.linkedin.com/in/pragya-aditya-9260261bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -31,7 +34,7 @@ const profileData = [
     name: "Mihir Jadhav",
     role: "AI Specialist",
     bio: "Expert in artificial intelligence and machine learning with a deep understanding of modern AI frameworks. Passionate about implementing AI solutions to solve complex problems.",
-    image: "/mihir.png",
+    image: `${basePath}/mihir.png`,
     skills: ["AI", "Machine Learning", "Python", "TensorFlow", "PyTorch", "NLP", "Computer Vision", "Data Science"],
     social: {
       github: "https://www.linkedin.com/in/-mihirjadhav?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -41,11 +44,6 @@ const profileData = [
 ];
 
 const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index: number }) => {
-  // Get the basePath for images
-  const pathname = usePathname();
-  const isProduction = pathname.includes('/ByteMatrix');
-  const basePath = isProduction ? '/ByteMatrix' : '';
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -82,7 +80,7 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
             className="h-full w-full"
           >
             <Image
-              src={`${basePath}${profile.image}`}
+              src={profile.image}
               alt={`${profile.name} - ${profile.role} at ByteMatrix Software Solution - Expert in ${profile.skills.slice(0, 3).join(', ')}`}
               fill
               className="object-cover object-top transition-transform duration-500 hover:scale-110"
