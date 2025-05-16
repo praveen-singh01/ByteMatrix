@@ -2,14 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { getImagePath } from "@/utils/getImagePath";
+import imageLoader from "@/utils/imageLoader";
 
 const profileData = [
   {
     name: "Praveen Singh",
     role: "Full Stack Developer",
     bio: "Experienced developer with a focus on scalable applications and clean code. Expert in Flutter, Firebase, cloud technologies, and DevOps practices.",
-    image: "praveen.jpeg", // Removed leading slash
+    image: "praveen.jpeg",
     skills: ["Flutter", "Firebase", "Dart", "AWS", "Git", "Node.js", "MongoDB", "Docker"],
     social: {
       github: "https://github.com/praveen",
@@ -20,7 +20,7 @@ const profileData = [
     name: "Pragya Aditya",
     role: "FrontEnd Developer",
     bio: "Passionate about creating beautiful and functional web applications. Specializes in React, Node.js, and modern web technologies with expertise in UI/UX design.",
-    image: "pragya.png", // Removed leading slash
+    image: "pragya.png",
     skills: ["React", "Node.js", "Flutter", "UI/UX", "Vue.js", "Python", "AWS", "Figma"],
     social: {
       github: "https://www.linkedin.com/in/pragya-aditya-9260261bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -31,7 +31,7 @@ const profileData = [
     name: "Mihir Jadhav",
     role: "Full Stack AI Developer",
     bio: "Expert in artificial intelligence and machine learning with a deep understanding of modern AI frameworks. Passionate about implementing AI solutions to solve complex problems.",
-    image: "mihir.png", // Removed leading slash
+    image: "mihir.jpg", // Changed to match the actual file extension
     skills: ["AI", "Machine Learning", "Python", "TensorFlow", "PyTorch", "NLP", "Computer Vision", "Data Science"],
     social: {
       github: "https://www.linkedin.com/in/-mihirjadhav?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -77,7 +77,8 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
             className="h-full w-full"
           >
             <Image
-              src={getImagePath(profile.image)}
+              loader={imageLoader}
+              src={profile.image}
               alt={`${profile.name} - ${profile.role} at ByteMatrix Software Solution - Expert in ${profile.skills.slice(0, 3).join(', ')}`}
               fill
               className="object-cover object-top transition-transform duration-500 hover:scale-110"

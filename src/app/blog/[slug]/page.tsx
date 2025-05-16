@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
+import imageLoader from "@/utils/imageLoader";
 
 // Generate metadata for each blog post
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -139,6 +140,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
           <div className="relative h-64 sm:h-96 w-full mb-8 rounded-xl overflow-hidden">
             <Image
+              loader={coverImageUrl.startsWith('http') ? undefined : imageLoader}
               src={coverImageUrl}
               alt={post.title}
               fill

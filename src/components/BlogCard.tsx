@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/utils/formatDate";
+import imageLoader from "@/utils/imageLoader";
 
 interface BlogCardProps {
   post: {
@@ -24,7 +25,7 @@ interface BlogCardProps {
 
 const BlogCard = ({ post, index }: BlogCardProps) => {
   const { frontMatter, slug } = post;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,6 +37,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
       <Link href={`/blog/${slug}`} className="block">
         <div className="relative h-48 w-full overflow-hidden">
           <Image
+            loader={frontMatter.coverImage.startsWith('http') ? undefined : imageLoader}
             src={frontMatter.coverImage}
             alt={frontMatter.title}
             fill
@@ -44,7 +46,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
-        
+
         <div className="p-4 sm:p-6">
           <div className="flex items-center justify-between mb-2 text-sm text-gray-500 dark:text-gray-400">
             <span>{formatDate(frontMatter.date)}</span>
@@ -52,15 +54,15 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
               <span>{frontMatter.readingTime}</span>
             )}
           </div>
-          
+
           <h3 className="text-lg sm:text-xl font-display font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
             {frontMatter.title}
           </h3>
-          
+
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 line-clamp-2">
             {frontMatter.excerpt}
           </p>
-          
+
           {frontMatter.tags && frontMatter.tags.length > 0 && (
             <div className="mb-3 sm:mb-4">
               <div className="flex flex-wrap gap-1 sm:gap-2">
@@ -75,7 +77,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
               </div>
             </div>
           )}
-          
+
           <div className="flex items-center">
             <div className="text-sm">
               <p className="text-gray-900 dark:text-white font-medium">

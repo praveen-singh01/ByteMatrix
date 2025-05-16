@@ -9,12 +9,21 @@ export function getImagePath(src: string): string {
     return src;
   }
 
-  // For Next.js, we need to ensure the path starts with a slash
-  // If it doesn't have a leading slash, add one
+  // Check if we're in production mode
+  const isProd = process.env.NODE_ENV === 'production';
+
+  // For local images in production, prepend the basePath
+  if (isProd) {
+    // Remove any leading slash from the src
+    const cleanSrc = src.startsWith('/') ? src.slice(1) : src;
+    return `/ByteMatrix/${cleanSrc}`;
+  }
+
+  // In development, ensure the path starts with a slash
   if (!src.startsWith('/')) {
     return `/${src}`;
   }
 
-  // If it already has a leading slash, return as is
+  // If it already has a leading slash in development, return as is
   return src;
 }
