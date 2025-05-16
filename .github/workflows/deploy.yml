@@ -32,6 +32,8 @@ jobs:
         run: npm ci
 
       - name: Build with Next.js
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: STATIC_EXPORT=true npm run build
 
       - name: Upload artifact
