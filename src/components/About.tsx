@@ -51,7 +51,7 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
         boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
         transition: { duration: 0.3 }
       }}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 relative"
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 relative h-full"
     >
       {/* Decorative gradient border */}
       <motion.div
@@ -67,7 +67,7 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
       />
 
       <div className="relative z-10">
-        <div className="relative h-72 w-full overflow-hidden">
+        <div className="relative h-60 sm:h-72 w-full overflow-hidden">
           <motion.div
             initial={{ scale: 1.2 }}
             whileInView={{ scale: 1 }}
@@ -100,18 +100,18 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
             transition={{ duration: 0.5, delay: index * 0.2 + 0.4 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-display font-bold">
+            <h3 className="text-xl sm:text-2xl font-display font-bold">
               {profile.name}
             </h3>
-            <p className="text-primary-300 font-medium">
+            <p className="text-sm sm:text-base text-primary-300 font-medium">
               {profile.role}
             </p>
           </motion.div>
         </div>
 
-        <div className="p-6 relative z-10">
+        <div className="p-4 sm:p-6 relative z-10">
           <motion.p
-            className="text-gray-600 dark:text-gray-300 mb-6"
+            className="text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}
@@ -121,16 +121,16 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
           </motion.p>
 
           <motion.div
-            className="mb-6"
+            className="mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 + 0.6 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+            <h4 className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
               Key Skills
             </h4>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 sm:gap-2">
               {profile.skills.map((skill, skillIndex) => (
                 <motion.span
                   key={skill}
@@ -148,7 +148,7 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
                     backgroundColor: "rgba(59, 130, 246, 0.3)",
                     transition: { duration: 0.2 }
                   }}
-                  className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 rounded-full text-sm"
+                  className="px-2 sm:px-3 py-0.5 sm:py-1 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 rounded-full text-xs sm:text-sm"
                 >
                   {skill}
                 </motion.span>
@@ -172,7 +172,7 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
               whileTap={{ scale: 0.9 }}
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5 sm:w-6 sm:h-6"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -193,7 +193,7 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
               whileTap={{ scale: 0.9 }}
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5 sm:w-6 sm:h-6"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -232,7 +232,7 @@ const BackgroundElement = ({ x, y, size, color, delay }: { x: number; y: number;
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+    <section id="about" className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 -z-0 overflow-hidden">
         <BackgroundElement x={-5} y={20} size={300} color="rgba(59, 130, 246, 0.1)" delay={0.2} />
@@ -241,13 +241,13 @@ const About = () => {
         <BackgroundElement x={75} y={80} size={180} color="rgba(147, 51, 234, 0.1)" delay={0.8} />
       </div>
 
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
           <motion.h2
             className="section-title relative inline-block"
@@ -275,7 +275,7 @@ const About = () => {
             Get to know the team behind ByteMatrix Software Solution - experts in frontend, backend, and full stack development
           </motion.p>
           <motion.p
-            className="max-w-3xl mx-auto text-center text-gray-600 dark:text-gray-300 mb-8"
+            className="max-w-3xl mx-auto text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -287,7 +287,7 @@ const About = () => {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}

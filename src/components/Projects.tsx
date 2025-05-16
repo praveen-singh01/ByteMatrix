@@ -64,44 +64,44 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
       viewport={{ once: true }}
       className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
     >
-      <div className="relative h-48 w-full overflow-hidden">
+      <div className="relative h-40 sm:h-48 w-full overflow-hidden">
         <Image
           src={project.image}
           alt={`ByteMatrix Software Solution - ${project.title} - Full Stack Development Project`}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-display font-bold text-gray-900 dark:text-white mb-2">
+      <div className="p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-display font-bold text-gray-900 dark:text-white mb-2">
           {project.title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 line-clamp-2">
           {project.description}
         </p>
-        <div className="mb-4">
-          <div className="flex flex-wrap gap-2">
+        <div className="mb-3 sm:mb-4">
+          <div className="flex flex-wrap gap-1 sm:gap-2">
             {project.tech.map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 rounded-full text-xs"
+                className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 rounded-full text-xs"
               >
                 {tech}
               </span>
             ))}
           </div>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-3 sm:gap-4">
           <Link
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium text-sm flex items-center gap-1"
+            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium text-xs sm:text-sm flex items-center gap-1"
           >
             <svg
-              className="w-4 h-4"
+              className="w-3 h-3 sm:w-4 sm:h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -119,10 +119,10 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium text-sm flex items-center gap-1"
+            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium text-xs sm:text-sm flex items-center gap-1"
           >
             <svg
-              className="w-4 h-4"
+              className="w-3 h-3 sm:w-4 sm:h-4"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -142,24 +142,24 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20">
-      <div className="container">
+    <section id="projects" className="py-12 sm:py-16 md:py-20">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
           <h2 className="section-title">Our Full Stack Development Projects</h2>
           <p className="section-subtitle">
             Explore our portfolio of frontend, backend, and full stack development projects
           </p>
-          <p className="max-w-3xl mx-auto text-center text-gray-600 dark:text-gray-300 mb-8">
+          <p className="max-w-3xl mx-auto text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
             ByteMatrix Software Solution specializes in contract-based development, delivering high-quality software solutions for businesses across various industries.
           </p>
         </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}

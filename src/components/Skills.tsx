@@ -85,7 +85,7 @@ const SkillCard = ({
       }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center relative overflow-hidden group"
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden group h-full"
     >
       {/* Background glow effect */}
       <motion.div
@@ -95,7 +95,7 @@ const SkillCard = ({
 
       {/* Icon */}
       <motion.div
-        className="text-5xl mb-4 relative"
+        className="text-4xl sm:text-5xl mb-3 sm:mb-4 relative"
         animate={{
           y: isHovered ? [0, -10, 0] : 0,
           rotate: isHovered ? [0, -5, 5, -5, 0] : 0
@@ -110,7 +110,7 @@ const SkillCard = ({
       </motion.div>
 
       {/* Skill name */}
-      <h3 className="text-lg font-display font-bold text-gray-900 dark:text-white mb-2">
+      <h3 className="text-base sm:text-lg font-display font-bold text-gray-900 dark:text-white mb-2 text-center">
         {skill.name}
       </h3>
 
@@ -163,7 +163,7 @@ const CategorySection = ({
       <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-8 text-center">
         {category}
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
         {items.map((skill, index) => (
           <SkillCard key={skill.name} skill={skill} index={index} />
         ))}
@@ -213,7 +213,7 @@ const FloatingElement = ({
 // Main Skills component
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section id="skills" className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <FloatingElement delay={0} x={5} y={20} size={100} color="#3B82F6" />

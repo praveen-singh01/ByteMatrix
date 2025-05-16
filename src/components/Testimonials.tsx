@@ -99,7 +99,7 @@ const StaggeredText = ({ text, isActive, delay = 0 }: { text: string; isActive: 
   const words = text.split(" ");
 
   return (
-    <p className="text-gray-700 dark:text-gray-300 italic">
+    <p className="text-gray-700 dark:text-gray-300 italic text-sm sm:text-base text-center sm:text-left">
       {words.map((word, i) => (
         <motion.span
           key={i}
@@ -168,7 +168,7 @@ const TestimonialCard = ({
       initial="enter"
       animate="center"
       exit="exit"
-      className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-xl p-10 transform-gpu"
+      className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-xl p-5 sm:p-8 md:p-10 transform-gpu"
       style={{
         perspective: "1000px",
         transformStyle: "preserve-3d"
@@ -194,9 +194,9 @@ const TestimonialCard = ({
         }}
       />
 
-      <div className="flex items-center mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center mb-4 sm:mb-6">
         <motion.div
-          className="relative w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-primary-500"
+          className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden mx-auto sm:mx-0 sm:mr-4 border-2 border-primary-500 mb-3 sm:mb-0"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{
@@ -212,9 +212,9 @@ const TestimonialCard = ({
             className="object-cover"
           />
         </motion.div>
-        <div>
+        <div className="text-center sm:text-left">
           <motion.h3
-            className="text-xl font-display font-bold text-gray-900 dark:text-white"
+            className="text-lg sm:text-xl font-display font-bold text-gray-900 dark:text-white"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.4 }}
@@ -222,7 +222,7 @@ const TestimonialCard = ({
             {testimonial.name}
           </motion.h3>
           <motion.p
-            className="text-sm text-gray-600 dark:text-gray-300"
+            className="text-xs sm:text-sm text-gray-600 dark:text-gray-300"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.4 }}
@@ -292,7 +292,7 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="py-24 relative overflow-hidden"
+      className="py-12 sm:py-16 md:py-24 relative overflow-hidden"
       ref={containerRef}
     >
       {/* Animated background elements */}
@@ -303,7 +303,7 @@ const Testimonials = () => {
         <DecorativeCircle delay={1.5} x={70} y={80} size={80} color="rgba(147, 51, 234, 0.1)" />
       </div>
 
-      <div className="container">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           animate={controls}
@@ -318,7 +318,7 @@ const Testimonials = () => {
               }
             }
           }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -343,7 +343,7 @@ const Testimonials = () => {
         </motion.div>
 
         <div className="max-w-4xl mx-auto relative">
-          <div className="relative h-[350px] perspective">
+          <div className="relative h-[300px] sm:h-[320px] md:h-[350px] perspective">
             <AnimatePresence custom={direction} mode="wait">
               <TestimonialCard
                 key={activeIndex}
@@ -355,20 +355,20 @@ const Testimonials = () => {
           </div>
 
           <motion.div
-            className="flex justify-center items-center gap-6 mt-12"
+            className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-8 sm:mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
             <motion.button
               onClick={prevTestimonial}
-              className="p-3 rounded-full bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md transition-all"
+              className="p-2 sm:p-3 rounded-full bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Previous testimonial"
             >
               <svg
-                className="w-6 h-6 text-primary-600 dark:text-primary-400"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 dark:text-primary-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -382,7 +382,7 @@ const Testimonials = () => {
               </svg>
             </motion.button>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3 my-4 sm:my-0 order-first sm:order-none">
               {testimonials.map((_, index) => (
                 <motion.button
                   key={index}
@@ -390,8 +390,8 @@ const Testimonials = () => {
                     setActiveIndex([index, activeIndex > index ? -1 : 1]);
                     setAutoplay(false);
                   }}
-                  className={`relative h-3 rounded-full transition-all duration-300 ${
-                    index === activeIndex ? "w-8 bg-primary-500" : "w-3 bg-gray-300 dark:bg-gray-600"
+                  className={`relative h-2 sm:h-3 rounded-full transition-all duration-300 ${
+                    index === activeIndex ? "w-6 sm:w-8 bg-primary-500" : "w-2 sm:w-3 bg-gray-300 dark:bg-gray-600"
                   }`}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.95 }}
@@ -416,13 +416,13 @@ const Testimonials = () => {
 
             <motion.button
               onClick={nextTestimonial}
-              className="p-3 rounded-full bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md transition-all"
+              className="p-2 sm:p-3 rounded-full bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Next testimonial"
             >
               <svg
-                className="w-6 h-6 text-primary-600 dark:text-primary-400"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 dark:text-primary-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

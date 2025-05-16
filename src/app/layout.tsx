@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import StructuredData from "@/components/StructuredData";
+import MobileNav from "@/components/MobileNav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,6 +18,12 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: "ByteMatrix Software Solution | Full Stack Development Team",
@@ -66,6 +73,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <ThemeToggle />
+          <MobileNav />
           {children}
         </ThemeProvider>
         <StructuredData />

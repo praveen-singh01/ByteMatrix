@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
+  output: 'export',  // Enable static exports
+  basePath: process.env.NODE_ENV === 'production' ? '/ByteMatrix' : '',
   images: {
+    unoptimized: true,  // Required for static export
     remotePatterns: [
       {
         protocol: 'https',

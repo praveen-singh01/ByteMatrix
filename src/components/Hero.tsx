@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 // Tech stack icons
 const TechIcon = ({ icon, name, delay, x, y }: { icon: string, name: string, delay: number, x: number, y: number }) => (
   <motion.div
-    className="absolute"
+    className="absolute hidden sm:block"
     initial={{ opacity: 0, scale: 0 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{
@@ -62,7 +62,7 @@ const CodeAnimation = () => {
 
   return (
     <motion.div
-      className="code-block max-w-md mx-auto text-left overflow-hidden"
+      className="code-block max-w-md mx-auto text-left overflow-hidden bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-xs sm:text-sm"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
@@ -73,7 +73,7 @@ const CodeAnimation = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
-          className="whitespace-pre"
+          className="whitespace-pre overflow-x-auto"
         >
           <span className="text-gray-500 mr-2">{index + 1}</span>
           {line}
@@ -118,7 +118,8 @@ const AnimatedText = ({ text, delay = 0 }: { text: string, delay?: number }) => 
 
   return (
     <motion.div
-      style={{ overflow: "hidden", display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      style={{ overflow: "hidden", display: "flex", flexWrap: "wrap" }}
+      className="justify-center md:justify-start"
       variants={container}
       initial="hidden"
       animate="visible"
@@ -149,40 +150,14 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 md:pt-0">
       {/* Enhanced Background Blobs */}
       <motion.div
-        className="absolute top-0 -left-4 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 100, 0],
-          y: [0, 50, 0],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-      <motion.div
-        className="absolute top-0 -right-4 w-72 h-72 bg-secondary-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, -100, 0],
-          y: [0, 50, 0],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-      <motion.div
-        className="absolute -bottom-8 left-20 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"
+        className="absolute top-0 -left-4 w-48 sm:w-72 h-48 sm:h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"
         animate={{
           scale: [1, 1.2, 1],
           x: [0, 50, 0],
-          y: [0, -100, 0],
+          y: [0, 30, 0],
         }}
         transition={{
           duration: 7,
@@ -191,11 +166,37 @@ const Hero = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-20 right-20 w-64 h-64 bg-secondary-400 rounded-full mix-blend-multiply filter blur-xl opacity-60"
+        className="absolute top-0 -right-4 w-48 sm:w-72 h-48 sm:h-72 bg-secondary-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"
+        animate={{
+          scale: [1, 1.2, 1],
+          x: [0, -50, 0],
+          y: [0, 30, 0],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+      <motion.div
+        className="absolute -bottom-8 left-10 sm:left-20 w-48 sm:w-72 h-48 sm:h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"
+        animate={{
+          scale: [1, 1.2, 1],
+          x: [0, 30, 0],
+          y: [0, -50, 0],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-40 sm:w-64 h-40 sm:h-64 bg-secondary-400 rounded-full mix-blend-multiply filter blur-xl opacity-60"
         animate={{
           scale: [1, 1.3, 1],
-          x: [0, -30, 0],
-          y: [0, 30, 0],
+          x: [0, -20, 0],
+          y: [0, 20, 0],
         }}
         transition={{
           duration: 8,
@@ -221,7 +222,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left Column - Text Content */}
           <div className="text-center md:text-left order-2 md:order-1">
@@ -230,9 +231,12 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-4xl md:text-6xl font-display font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
-                ByteMatrix Software Solution - Full Stack Development Experts
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
+                ByteMatrix Software Solution
               </h1>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-display font-medium mb-6 text-gray-700 dark:text-gray-300">
+                Full Stack Development Experts
+              </h2>
             </motion.div>
 
             <motion.div
@@ -251,12 +255,12 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="mb-8"
+              className="mb-6 sm:mb-8"
             >
-              <p className="text-xl text-gray-600 dark:text-gray-300">
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
                 <span className="typewriter inline-block">Frontend & Backend Development Experts</span>
               </p>
-              <p className="mt-4 text-gray-600 dark:text-gray-300">
+              <p className="mt-3 sm:mt-4 text-gray-600 dark:text-gray-300 text-sm sm:text-base">
                 Specializing in contract-based full stack development projects
               </p>
             </motion.div>
@@ -265,17 +269,17 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="flex gap-4 justify-center md:justify-start"
+              className="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start"
             >
               <Link
                 href="#contact"
-                className="btn btn-primary px-8 py-3 hover:scale-105 transition-transform"
+                className="btn btn-primary px-5 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-transform"
               >
                 Hire Us
               </Link>
               <Link
                 href="#projects"
-                className="btn btn-secondary px-8 py-3 hover:scale-105 transition-transform"
+                className="btn btn-secondary px-5 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-transform"
               >
                 View Projects
               </Link>
@@ -285,9 +289,9 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="mt-8"
+              className="mt-6 sm:mt-8"
             >
-              <div className="flex justify-center md:justify-start gap-6">
+              <div className="flex justify-center md:justify-start gap-4 sm:gap-6">
                 <a
                   href="https://github.com"
                   target="_blank"
@@ -295,7 +299,7 @@ const Hero = () => {
                   className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:scale-110 transform"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -314,7 +318,7 @@ const Hero = () => {
                   className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:scale-110 transform"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -329,7 +333,7 @@ const Hero = () => {
                   className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:scale-110 transform"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
