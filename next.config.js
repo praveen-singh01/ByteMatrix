@@ -1,11 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
-  output: 'export',  // Enable static exports
-  basePath: process.env.NODE_ENV === 'production' ? '/ByteMatrix' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/ByteMatrix/' : '',
+  // For Strapi integration, we need to disable static exports
+  // to allow API routes and server components to work properly
+  output: process.env.STATIC_EXPORT === 'true' ? 'export' : undefined,
+
+  // Only use basePath and assetPrefix in static export mode
+  ...(process.env.STATIC_EXPORT === 'true' ? {
+    basePath: '/ByteMatrix',
+    assetPrefix: '/ByteMatrix/',
+    images: {
+      unoptimized: true,  // Required for static export
+    },
+  } : {}),
+
+  // Common image configuration for all environments
   images: {
-    unoptimized: true,  // Required for static export
+    domains: ['localhost'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -19,10 +30,28 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'api.dicebear.com',
       },
+      // Allow Strapi media from localhost in development
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      // For production Strapi deployment (update with your actual domain)
+      {
+        protocol: 'https',
+        hostname: '**.onrender.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.railway.app',
+      },
     ],
   },
+
   // Ensure trailing slashes are handled correctly
   trailingSlash: true,
+
+  // Configure pageExtensions to include md and mdx
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 };
 
 module.exports = nextConfig;

@@ -8,10 +8,13 @@ export function getImagePath(src: string): string {
   if (src.startsWith('http')) {
     return src;
   }
-  
-  // Remove any leading slash
-  const cleanSrc = src.startsWith('/') ? src.slice(1) : src;
-  
-  // In development, just return the path
-  return cleanSrc;
+
+  // For Next.js, we need to ensure the path starts with a slash
+  // If it doesn't have a leading slash, add one
+  if (!src.startsWith('/')) {
+    return `/${src}`;
+  }
+
+  // If it already has a leading slash, return as is
+  return src;
 }

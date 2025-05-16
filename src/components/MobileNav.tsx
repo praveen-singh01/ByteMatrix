@@ -9,12 +9,13 @@ const navigation = [
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
+  { name: "Blog", href: "/blog" },
   { name: "Testimonials", href: "#testimonials" },
 ];
 
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   // Close menu when clicking on a link
   const handleLinkClick = () => {
     setIsOpen(false);
@@ -103,7 +104,7 @@ const MobileNav = () => {
                   </motion.li>
                 ))}
               </ul>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

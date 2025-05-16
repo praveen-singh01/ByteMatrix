@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "praveen_s_first_blogs",
+  "info": {
+    "singularName": "praveen-s-first-blog",
+    "pluralName": "praveen-s-first-blogs",
+    "displayName": "Praveen's First blog"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Flutter": {
+      "type": "blocks"
+    },
+    "flutterimage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Flutter_text": {
+      "type": "text"
+    },
+    "date": {
+      "type": "date"
+    },
+    "Author": {
+      "type": "enumeration",
+      "enum": [
+        "Author: Praveen",
+        "Date: May 16, 2025",
+        "Tags: Flutter, Mobile Development, Cross-Platform, Dart, UI/UX"
+      ]
+    }
+  }
+}
