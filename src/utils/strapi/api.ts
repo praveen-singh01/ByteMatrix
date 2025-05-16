@@ -35,7 +35,7 @@ export interface BlogPost {
   content?: string;
   excerpt?: string;
   publishedAt?: string;
-  author?: 'Pragya' | 'Praveen' | 'Mihir';
+  author?: string; // Changed from union type to allow any string
   coverImage?: {
     data?: {
       attributes?: {
@@ -98,7 +98,7 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 
       if (item.Flutter && Array.isArray(item.Flutter)) {
         // Extract the first paragraph as title if available
-        const firstParagraph = item.Flutter.find(block =>
+        const firstParagraph = item.Flutter.find((block: any) =>
           block.type === 'paragraph' &&
           block.children &&
           block.children.length > 0 &&
@@ -111,10 +111,10 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 
         // Combine all paragraph texts for content
         content = item.Flutter
-          .filter(block => block.type === 'paragraph')
-          .map(block => {
+          .filter((block: any) => block.type === 'paragraph')
+          .map((block: any) => {
             if (block.children && block.children.length > 0) {
-              return block.children.map(child => child.text).join('');
+              return block.children.map((child: any) => child.text).join('');
             }
             return '';
           })
@@ -233,7 +233,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 
     if (item.Flutter && Array.isArray(item.Flutter)) {
       // Extract the first paragraph as title if available
-      const firstParagraph = item.Flutter.find(block =>
+      const firstParagraph = item.Flutter.find((block: any) =>
         block.type === 'paragraph' &&
         block.children &&
         block.children.length > 0 &&
@@ -246,10 +246,10 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 
       // Combine all paragraph texts for content
       content = item.Flutter
-        .filter(block => block.type === 'paragraph')
-        .map(block => {
+        .filter((block: any) => block.type === 'paragraph')
+        .map((block: any) => {
           if (block.children && block.children.length > 0) {
-            return block.children.map(child => child.text).join('');
+            return block.children.map((child: any) => child.text).join('');
           }
           return '';
         })
