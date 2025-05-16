@@ -3,6 +3,7 @@ const nextConfig = {
   /* config options here */
   output: 'export',  // Enable static exports
   basePath: process.env.NODE_ENV === 'production' ? '/ByteMatrix' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/ByteMatrix/' : '',
   images: {
     unoptimized: true,  // Required for static export
     remotePatterns: [
