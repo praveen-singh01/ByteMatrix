@@ -21,7 +21,7 @@ const profileData = [
     role: "FrontEnd Developer",
     bio: "Passionate about creating beautiful and functional web applications. Specializes in React, Node.js, and modern web technologies with expertise in UI/UX design.",
     image: "pragya.png", // Removed leading slash
-    skills: ["React", "Node.js", "TypeScript", "UI/UX", "Vue.js", "Python", "AWS", "Figma"],
+    skills: ["React", "Node.js", "Flutter", "UI/UX", "Vue.js", "Python", "AWS", "Figma"],
     social: {
       github: "https://www.linkedin.com/in/pragya-aditya-9260261bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       linkedin: "https://linkedin.com/in/pragya",
@@ -29,7 +29,7 @@ const profileData = [
   },
   {
     name: "Mihir Jadhav",
-    role: "AI Specialist",
+    role: "Full Stack AI Developer",
     bio: "Expert in artificial intelligence and machine learning with a deep understanding of modern AI frameworks. Passionate about implementing AI solutions to solve complex problems.",
     image: "mihir.png", // Removed leading slash
     skills: ["AI", "Machine Learning", "Python", "TensorFlow", "PyTorch", "NLP", "Computer Vision", "Data Science"],

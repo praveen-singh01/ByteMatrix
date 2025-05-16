@@ -17,20 +17,22 @@ export default async function BlogPage() {
     const strapiPosts = await getAllBlogPosts();
 
     // Transform Strapi data to match the format expected by BlogList component
-    const posts = strapiPosts.map(post => ({
-      slug: post.slug,
-      frontMatter: {
-        title: post.title,
-        date: post.publishedAt,
-        excerpt: post.excerpt,
-        author: post.author,
-        coverImage: post.coverImage?.data
-          ? getStrapiMediaUrl(post.coverImage.data.attributes.url)
-          : "https://picsum.photos/seed/default/1200/630",
-        tags: post.tags || [],
-        readingTime: `${Math.ceil(post.content.length / 1000)} min read`,
-      },
-    }));
+    const posts = strapiPosts && strapiPosts.length > 0
+      ? strapiPosts.map(post => ({
+          slug: post.slug || `post-${post.id || Math.random().toString(36).substring(2, 9)}`,
+          frontMatter: {
+            title: post.title || 'Untitled Post',
+            date: post.publishedAt || new Date().toISOString(),
+            excerpt: post.excerpt || 'No excerpt available',
+            author: post.author || 'ByteMatrix Team',
+            coverImage: post.coverImage?.data?.attributes?.url
+              ? getStrapiMediaUrl(post.coverImage.data.attributes.url)
+              : "https://picsum.photos/seed/default/1200/630",
+            tags: post.tags || [],
+            readingTime: `${Math.ceil((post.content?.length || 0) / 1000)} min read`,
+          },
+        }))
+      : [];
 
     return (
       <main className="min-h-screen pt-16 md:pt-24" itemScope itemType="https://schema.org/Blog">

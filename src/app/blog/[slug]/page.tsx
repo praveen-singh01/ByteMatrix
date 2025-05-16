@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  const coverImageUrl = post.coverImage?.data
+  const coverImageUrl = post.coverImage?.data?.attributes?.url
     ? getStrapiMediaUrl(post.coverImage.data.attributes.url)
     : "https://picsum.photos/seed/default/1200/630";
 
@@ -27,13 +27,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `${post.title} | ByteMatrix Software Solution Blog`,
     description: post.excerpt,
     keywords: post.tags,
-    authors: [{ name: post.author }],
+    authors: post.author ? [{ name: post.author }] : undefined,
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.publishedAt,
-      authors: [post.author],
+      authors: post.author ? [post.author] : undefined,
       images: [
         {
           url: coverImageUrl,
@@ -79,11 +79,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       notFound();
     }
 
-    const coverImageUrl = post.coverImage?.data
+    // Log the post data to see what we're getting
+    console.log('Post data:', JSON.stringify(post, null, 2));
+
+    const coverImageUrl = post.coverImage?.data?.attributes?.url
       ? getStrapiMediaUrl(post.coverImage.data.attributes.url)
       : "https://picsum.photos/seed/default/1200/630";
 
-    const readingTime = `${Math.ceil(post.content.length / 1000)} min read`;
+    console.log('Cover image URL:', coverImageUrl);
+
+    const readingTime = `${Math.ceil((post.content?.length || 0) / 1000)} min read`;
 
   return (
     <main className="min-h-screen pt-16 md:pt-24" itemScope itemType="https://schema.org/BlogPosting">
@@ -154,7 +159,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             rehypePlugins={[rehypeHighlight]}
             remarkPlugins={[remarkGfm]}
           >
-            {post.content}
+            {post.content || 'No content available.'}
           </ReactMarkdown>
         </div>
 
