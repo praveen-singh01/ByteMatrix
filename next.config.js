@@ -11,12 +11,15 @@ const nextConfig = {
     assetPrefix: '/ByteMatrix/',
     images: {
       unoptimized: true,  // Required for static export
+      loader: 'custom',
+      loaderFile: './src/utils/imageLoader.ts',
     },
   } : {}),
 
   // Common image configuration for all environments
   images: {
-    domains: ['localhost'],
+    loader: 'custom',
+    loaderFile: './src/utils/imageLoader.ts',
     remotePatterns: [
       {
         protocol: 'https',

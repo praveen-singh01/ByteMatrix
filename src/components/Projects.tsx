@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import imageLoader from "@/utils/imageLoader";
 
 const projects = [
   {
@@ -67,7 +66,6 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
     >
       <div className="relative h-40 sm:h-48 w-full overflow-hidden">
         <Image
-          loader={project.image.startsWith('http') ? undefined : imageLoader}
           src={project.image}
           alt={`ByteMatrix Software Solution - ${project.title} - Full Stack Development Project`}
           fill

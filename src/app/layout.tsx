@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import StructuredData from "@/components/StructuredData";
 import MobileNav from "@/components/MobileNav";
+import Chat from "@/components/chat/Chat";
+import SplashScreen from "@/components/SplashScreen";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -72,9 +74,11 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} font-sans antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}
       >
         <ThemeProvider>
+          <SplashScreen />
           <ThemeToggle />
           <MobileNav />
           {children}
+          <Chat />
         </ThemeProvider>
         <StructuredData />
       </body>

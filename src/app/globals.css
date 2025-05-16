@@ -167,4 +167,27 @@
   .animated-underline:hover::after {
     width: 100%;
   }
+
+  /* 3D transformations for splash screen */
+  .preserve-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  /* Matrix animation */
+  .matrix-char {
+    font-family: monospace;
+    font-size: 14px;
+    animation: matrix-fade 2s infinite;
+  }
+
+  @keyframes matrix-fade {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* Hexagon grid animation */
+  .hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
 }

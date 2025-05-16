@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import imageLoader from "@/utils/imageLoader";
 
 const profileData = [
   {
@@ -24,7 +23,7 @@ const profileData = [
     skills: ["React", "Node.js", "Flutter", "UI/UX", "Vue.js", "Python", "AWS", "Figma"],
     social: {
       github: "https://www.linkedin.com/in/pragya-aditya-9260261bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      linkedin: "https://linkedin.com/in/pragya",
+      linkedin:  "https://www.linkedin.com/in/pragya-aditya-9260261bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
   },
   {
@@ -35,7 +34,7 @@ const profileData = [
     skills: ["AI", "Machine Learning", "Python", "TensorFlow", "PyTorch", "NLP", "Computer Vision", "Data Science"],
     social: {
       github: "https://www.linkedin.com/in/-mihirjadhav?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      linkedin: "https://linkedin.com/in/mihir",
+      linkedin: "https://www.linkedin.com/in/-mihirjadhav?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
   },
 ];
@@ -77,7 +76,6 @@ const ProfileCard = ({ profile, index }: { profile: typeof profileData[0]; index
             className="h-full w-full"
           >
             <Image
-              loader={imageLoader}
               src={profile.image}
               alt={`${profile.name} - ${profile.role} at ByteMatrix Software Solution - Expert in ${profile.skills.slice(0, 3).join(', ')}`}
               fill

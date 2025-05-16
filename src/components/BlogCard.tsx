@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/utils/formatDate";
-import imageLoader from "@/utils/imageLoader";
 
 interface BlogCardProps {
   post: {
@@ -37,7 +36,6 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
       <Link href={`/blog/${slug}`} className="block">
         <div className="relative h-48 w-full overflow-hidden">
           <Image
-            loader={frontMatter.coverImage.startsWith('http') ? undefined : imageLoader}
             src={frontMatter.coverImage}
             alt={frontMatter.title}
             fill
